@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Financial Transaction",
+    "description": "All financial transactions - revenues and expenses"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transactionDate": {
+      "type": "date",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["revenue", "expense"],
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "sales",
+        "material_purchase",
+        "labor_payment",
+        "overhead_fixed",
+        "overhead_variable",
+        "zakat",
+        "sadaqat",
+        "other"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": ["cash", "bank_transfer", "credit", "other"],
+      "default": "cash"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "supplier": {
+      "type": "string"
+    },
+    "customer": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "isPaid": {
+      "type": "boolean",
+      "default": true
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

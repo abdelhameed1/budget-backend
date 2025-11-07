@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sales",
+  "info": {
+    "singularName": "sale",
+    "pluralName": "sales",
+    "displayName": "Sale",
+    "description": "Sales transactions and revenue tracking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "saleDate": {
+      "type": "date",
+      "required": true
+    },
+    "invoiceNumber": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product"
+    },
+    "batch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::batch.batch"
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "sellingPricePerUnit": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "totalRevenue": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "costPerUnit": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "totalCOGS": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "grossProfit": {
+      "type": "decimal",
+      "default": 0
+    },
+    "grossMarginPercent": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    "customer": {
+      "type": "string"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": ["cash", "bank_transfer", "credit", "installment", "other"],
+      "default": "cash"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": ["paid", "partial", "pending"],
+      "default": "paid"
+    },
+    "amountPaid": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "amountDue": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

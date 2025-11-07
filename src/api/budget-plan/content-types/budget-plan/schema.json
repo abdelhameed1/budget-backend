@@ -1,0 +1,102 @@
+{
+  "kind": "collectionType",
+  "collectionName": "budget_plans",
+  "info": {
+    "singularName": "budget-plan",
+    "pluralName": "budget-plans",
+    "displayName": "Budget Plan",
+    "description": "Monthly/Quarterly budget planning and tracking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "period": {
+      "type": "enumeration",
+      "enum": ["monthly", "quarterly", "yearly"],
+      "required": true,
+      "default": "monthly"
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "budgetedRevenue": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "actualRevenue": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "budgetedDirectMaterial": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "actualDirectMaterial": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "budgetedDirectLabor": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "actualDirectLabor": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "budgetedFixedOverhead": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "actualFixedOverhead": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "budgetedVariableOverhead": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "actualVariableOverhead": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "budgetedUnits": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "actualUnits": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "active", "closed"],
+      "default": "draft"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

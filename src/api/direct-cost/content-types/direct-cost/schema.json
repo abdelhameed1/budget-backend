@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "direct_costs",
+  "info": {
+    "singularName": "direct-cost",
+    "pluralName": "direct-costs",
+    "displayName": "Direct Cost",
+    "description": "Direct material and labor costs traceable to batches"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "batch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::batch.batch",
+      "inversedBy": "directCosts"
+    },
+    "costType": {
+      "type": "enumeration",
+      "enum": ["material", "labor"],
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "quantity": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "unit": {
+      "type": "string",
+      "default": "piece"
+    },
+    "unitCost": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "totalCost": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "supplier": {
+      "type": "string"
+    },
+    "purchaseDate": {
+      "type": "date"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

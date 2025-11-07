@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "zakat_sadaqats",
+  "info": {
+    "singularName": "zakat-sadaqat",
+    "pluralName": "zakat-sadaqats",
+    "displayName": "Zakat & Sadaqat",
+    "description": "Islamic charitable obligations tracking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": ["zakat", "sadaqat"],
+      "required": true
+    },
+    "calculationMethod": {
+      "type": "enumeration",
+      "enum": ["net_assets", "net_profit", "fixed_amount"],
+      "default": "net_assets"
+    },
+    "hijriYear": {
+      "type": "string"
+    },
+    "gregorianYear": {
+      "type": "integer"
+    },
+    "calculationDate": {
+      "type": "date",
+      "required": true
+    },
+    "zakatableAssets": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "cash": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "receivables": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "inventory": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "liabilities": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "netZakatableAssets": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "nisabThreshold": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "isAboveNisab": {
+      "type": "boolean",
+      "default": false
+    },
+    "zakatRate": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100,
+      "default": 2.5
+    },
+    "calculatedAmount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "paidAmount": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "remainingAmount": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "paymentDate": {
+      "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["calculated", "partially_paid", "fully_paid"],
+      "default": "calculated"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

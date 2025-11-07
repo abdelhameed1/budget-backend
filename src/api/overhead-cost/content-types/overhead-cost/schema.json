@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "overhead_costs",
+  "info": {
+    "singularName": "overhead-cost",
+    "pluralName": "overhead-costs",
+    "displayName": "Overhead Cost",
+    "description": "Indirect costs - fixed and variable overhead"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["packaging", "logistics", "rent", "utilities", "salaries", "marketing", "admin", "other"],
+      "required": true
+    },
+    "costType": {
+      "type": "enumeration",
+      "enum": ["fixed", "variable"],
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "isPrepaid": {
+      "type": "boolean",
+      "default": false
+    },
+    "prepaidAssetValue": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "amortizationPeriod": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "amortizedAmount": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "remainingValue": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "supplier": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "allocatedToBatch": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

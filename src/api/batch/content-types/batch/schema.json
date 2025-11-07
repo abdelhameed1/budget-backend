@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "batches",
+  "info": {
+    "singularName": "batch",
+    "pluralName": "batches",
+    "displayName": "Production Batch",
+    "description": "Job order costing - production batches"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "batchNumber": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "batches"
+    },
+    "plannedQuantity": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "actualQuantity": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["planned", "in_production", "quality_check", "completed", "cancelled"],
+      "default": "planned",
+      "required": true
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "completionDate": {
+      "type": "date"
+    },
+    "productionHours": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "productionDays": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "totalMaterialCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "totalLaborCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "totalOverheadCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "totalCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "costPerUnit": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "overheadRateApplied": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low", "standard"],
+      "default": "standard"
+    },
+    "directCosts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::direct-cost.direct-cost",
+      "mappedBy": "batch"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

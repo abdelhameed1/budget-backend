@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "overhead_rates",
+  "info": {
+    "singularName": "overhead-rate",
+    "pluralName": "overhead-rates",
+    "displayName": "Overhead Rate",
+    "description": "Pre-determined overhead rates for cost allocation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "rateType": {
+      "type": "enumeration",
+      "enum": ["high", "medium", "low", "standard"],
+      "required": true
+    },
+    "ratePerUnit": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "ratePerHour": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "applicableStage": {
+      "type": "enumeration",
+      "enum": ["launch", "growth", "maturity", "all"],
+      "default": "all"
+    },
+    "effectiveFrom": {
+      "type": "date",
+      "required": true
+    },
+    "effectiveTo": {
+      "type": "date"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}

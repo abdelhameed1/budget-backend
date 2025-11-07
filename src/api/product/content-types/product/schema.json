@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": "Products/Items in the catalog"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "sku": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["clothing", "accessories", "home", "other"],
+      "default": "clothing"
+    },
+    "targetSellingPrice": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "standardMaterialCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "standardLaborCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "standardOverheadCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "lifecycleStage": {
+      "type": "enumeration",
+      "enum": ["development", "launch", "growth", "maturity", "decline"],
+      "default": "development"
+    },
+    "developmentCost": {
+      "type": "decimal",
+      "min": 0,
+      "default": 0
+    },
+    "expectedLifetimeSales": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "batches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::batch.batch",
+      "mappedBy": "product"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}
