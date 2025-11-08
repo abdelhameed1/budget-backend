@@ -19,16 +19,16 @@
     },
     "sku": {
       "type": "string",
-      "unique": true,
-      "required": true
+      "unique": true
     },
     "description": {
       "type": "text"
     },
     "category": {
-      "type": "enumeration",
-      "enum": ["clothing", "accessories", "home", "other"],
-      "default": "clothing"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
     },
     "targetSellingPrice": {
       "type": "decimal",
@@ -52,7 +52,13 @@
     },
     "lifecycleStage": {
       "type": "enumeration",
-      "enum": ["development", "launch", "growth", "maturity", "decline"],
+      "enum": [
+        "development",
+        "launch",
+        "growth",
+        "maturity",
+        "decline"
+      ],
       "default": "development"
     },
     "developmentCost": {
