@@ -1,11 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "transactions",
+  "collectionName": "cashflows",
   "info": {
-    "singularName": "transaction",
-    "pluralName": "transactions",
-    "displayName": "Financial Transaction",
-    "description": "All financial transactions - revenues and expenses"
+    "singularName": "cashflow",
+    "pluralName": "cashflows",
+    "displayName": "Cash Flow",
+    "description": "All cash flow transactions"
   },
   "options": {
     "draftAndPublish": false

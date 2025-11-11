@@ -67,7 +67,7 @@ export default factories.createCoreService('api::sale.sale', ({ strapi }) => ({
     });
 
     // Create financial transaction for revenue
-    await strapi.entityService.create('api::transaction.transaction', {
+    await strapi.entityService.create('api::cashflow.cashflow', {
       data: {
         transactionDate: saleData.saleDate,
         type: 'revenue',

@@ -10,7 +10,7 @@ export default factories.createCoreService('api::zakat-sadaqat.zakat-sadaqat', (
    */
   async calculateZakat(calculationDate: Date) {
     // Get all cash/bank transactions
-    const transactions = await strapi.entityService.findMany('api::transaction.transaction', {
+    const transactions = await strapi.entityService.findMany('api::cashflow.cashflow', {
       filters: {
         transactionDate: { $lte: calculationDate },
       },
@@ -45,7 +45,7 @@ export default factories.createCoreService('api::zakat-sadaqat.zakat-sadaqat', (
     }, 0);
 
     // Get liabilities (unpaid expenses)
-    const unpaidExpenses = await strapi.entityService.findMany('api::transaction.transaction', {
+    const unpaidExpenses = await strapi.entityService.findMany('api::cashflow.cashflow', {
       filters: {
         type: 'expense',
         isPaid: false,
@@ -125,7 +125,7 @@ export default factories.createCoreService('api::zakat-sadaqat.zakat-sadaqat', (
     });
 
     // Create financial transaction
-    await strapi.entityService.create('api::transaction.transaction', {
+    await strapi.entityService.create('api::cashflow.cashflow', {
       data: {
         transactionDate: paymentDate,
         type: 'expense',

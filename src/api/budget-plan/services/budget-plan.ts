@@ -108,7 +108,7 @@ export default factories.createCoreService('api::budget-plan.budget-plan', ({ st
     const endDate = new Date(budget.endDate);
 
     // Get all transactions in the period
-    const transactions = await strapi.entityService.findMany('api::transaction.transaction', {
+    const transactions = await strapi.entityService.findMany('api::cashflow.cashflow', {
       filters: {
         transactionDate: {
           $gte: startDate,
