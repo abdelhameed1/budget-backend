@@ -5,7 +5,7 @@
     "singularName": "cashflow",
     "pluralName": "cashflows",
     "displayName": "Cash Flow",
-    "description": "All cash flow transactions"
+    "description": "Owner capital investments and business expense tracking"
   },
   "options": {
     "draftAndPublish": false
@@ -18,19 +18,17 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": ["revenue", "expense"],
+      "enum": ["owner_investment", "expense"],
       "required": true
     },
     "category": {
       "type": "enumeration",
       "enum": [
-        "sales",
+        "owner_investment",
         "material_purchase",
         "labor_payment",
         "overhead_fixed",
         "overhead_variable",
-        "zakat",
-        "sadaqat",
         "other"
       ],
       "required": true
@@ -52,10 +50,13 @@
     "reference": {
       "type": "string"
     },
-    "supplier": {
-      "type": "string"
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::owner.owner",
+      "required": false
     },
-    "customer": {
+    "supplier": {
       "type": "string"
     },
     "invoiceNumber": {
