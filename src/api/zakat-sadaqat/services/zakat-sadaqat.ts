@@ -124,18 +124,18 @@ export default factories.createCoreService('api::zakat-sadaqat.zakat-sadaqat', (
       },
     });
 
-    // Create financial transaction
-    await strapi.entityService.create('api::cashflow.cashflow', {
-      data: {
-        transactionDate: paymentDate,
-        type: 'expense',
-        category: zakatRecord.type === 'zakat' ? 'zakat' : 'sadaqat',
-        description: `${zakatRecord.type === 'zakat' ? 'Zakat' : 'Sadaqat'} Payment`,
-        amount,
-        paymentMethod: 'cash',
-        isPaid: true,
-      },
-    });
+    // // Create financial transaction
+    // await strapi.entityService.create('api::cashflow.cashflow', {
+    //   data: {
+    //     transactionDate: paymentDate,
+    //     type: 'expense',
+    //     category: zakatRecord.type === 'zakat' ? 'zakat' : 'sadaqat',
+    //     description: `${zakatRecord.type === 'zakat' ? 'Zakat' : 'Sadaqat'} Payment`,
+    //     amount,
+    //     paymentMethod: 'cash',
+    //     isPaid: true,
+    //   },
+    // });
 
     return await strapi.entityService.findOne('api::zakat-sadaqat.zakat-sadaqat', zakatId);
   },

@@ -4,8 +4,8 @@
   "info": {
     "singularName": "sale",
     "pluralName": "sales",
-    "displayName": "Sale",
-    "description": "Sales transactions and revenue tracking"
+    "displayName": "Sale (DISABLED - Not in use yet)",
+    "description": "Sales transactions and revenue tracking - DISABLED until needed"
   },
   "options": {
     "draftAndPublish": false
