@@ -27,21 +27,8 @@ export default factories.createCoreService('api::batch.batch', ({ strapi }) => (
       ?.filter((cost: any) => cost.costType === 'labor')
       .reduce((sum: number, cost: any) => sum + Number(cost.totalCost || 0), 0) || 0;
 
-    // Get applicable overhead rate
-    const overheadRate = await this.getApplicableOverheadRate(batch);
-    
-    // Calculate overhead cost
-    let overheadCost = 0;
-    if (overheadRate) {
-      // Unit-based overhead
-      const quantity = batch.actualQuantity || batch.plannedQuantity;
-      overheadCost = Number(overheadRate.ratePerUnit || 0) * quantity;
-
-      // Add time-based overhead if production hours are tracked
-      if (batch.productionHours && overheadRate.ratePerHour) {
-        overheadCost += Number(overheadRate.ratePerHour) * Number(batch.productionHours);
-      }
-    }
+    // Overhead calculation disabled for now
+    const overheadCost = 0;
 
     // Calculate totals
     const totalCost = materialCosts + laborCosts + overheadCost;
@@ -104,7 +91,8 @@ export default factories.createCoreService('api::batch.batch', ({ strapi }) => (
   },
 
   /**
-   * Update inventory when batch is completed
+   * Update batch status to completed
+   * Note: Cost calculation happens automatically via lifecycle hook
    */
   async completeBatch(batchId: number) {
     const batch: any = await strapi.entityService.findOne('api::batch.batch', batchId, {
@@ -119,44 +107,18 @@ export default factories.createCoreService('api::batch.batch', ({ strapi }) => (
       throw new Error('Batch must be in quality_check status to complete');
     }
 
-    // Calculate final costs
-    await this.calculateBatchCosts(batchId);
-
-    // Update batch status
-    await strapi.entityService.update('api::batch.batch', batchId, {
+    // Update batch status to completed
+    // Cost calculation will be triggered automatically by the lifecycle hook
+    const updatedBatch = await strapi.entityService.update('api::batch.batch', batchId, {
       data: {
         status: 'completed',
         completionDate: new Date(),
       },
     });
 
-    // Create or update inventory record
-    const existingInventory: any = await strapi.entityService.findMany('api::inventory.inventory', {
-      filters: {
-        batch: { id: batchId },
-      },
-      limit: 1,
-    });
+    // Inventory creation is disabled for now
+    // TODO: Re-enable inventory creation when needed
 
-    const inventoryData = {
-      product: batch.product.id,
-      batch: batchId,
-      quantityOnHand: batch.actualQuantity,
-      unitCost: batch.costPerUnit,
-      totalValue: batch.totalCost,
-      lastUpdated: new Date(),
-    };
-
-    if (existingInventory.length > 0) {
-      await strapi.entityService.update('api::inventory.inventory', existingInventory[0].id, {
-        data: inventoryData,
-      });
-    } else {
-      await strapi.entityService.create('api::inventory.inventory', {
-        data: inventoryData,
-      });
-    }
-
-    return batch;
+    return updatedBatch;
   },
 }));
