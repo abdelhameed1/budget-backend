@@ -5,7 +5,7 @@
     "singularName": "budget-plan",
     "pluralName": "budget-plans",
     "displayName": "Budget Plan",
-    "description": "Monthly/Quarterly budget planning and tracking"
+    "description": "Track owner investments vs product costs (budgetedRevenue = total owner investment budget)"
   },
   "options": {
     "draftAndPublish": false

@@ -118,7 +118,7 @@ export default factories.createCoreService('api::budget-plan.budget-plan', ({ st
     });
 
     // Calculate actuals from transactions
-    let actualRevenue = 0;
+    let actualRevenue = 0; // Will track owner investments instead
     let actualDirectMaterial = 0;
     let actualDirectLabor = 0;
     let actualFixedOverhead = 0;
@@ -127,8 +127,8 @@ export default factories.createCoreService('api::budget-plan.budget-plan', ({ st
     transactions.forEach((txn: any) => {
       const amount = parseFloat(txn.amount || 0);
 
-      if (txn.type === 'revenue' && txn.category === 'sales') {
-        actualRevenue += amount;
+      if (txn.type === 'owner_investment' && txn.category === 'owner_investment') {
+        actualRevenue += amount; // Using revenue field to track total owner investments
       } else if (txn.type === 'expense') {
         switch (txn.category) {
           case 'material_purchase':
