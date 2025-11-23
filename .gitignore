@@ -81,7 +81,6 @@ ssl
 .idea
 nbproject
 public/uploads/*
-types/generated/contentTypes.d.ts
 !public/uploads/.gitkeep
 .tsbuildinfo
 .eslintcache
